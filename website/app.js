@@ -8,7 +8,12 @@ const postPath = 'http://localhost:3000/add'
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = (d.getMonth() + 1)+'.'+ d.getDate()+'.'+ d.getFullYear();
+
+//validate zip input
+function checkZip(zip) {
+    return /^\d{5}(-\d{4})?$/.test(zip);
+ }
 
 // Fetch weather by zip
 const checkWeather = async (zip) => {
@@ -55,13 +60,15 @@ const updateUI = (data) => {
     document.querySelector('#content').textContent = data.userFeelings;
 }
 
-
 // listen for submit then call apis
 const handleGenerate = (event) => {
     const userZip = document.querySelector('#zip').value;
     const userFeelings = document.querySelector('#feelings').value;
     event.preventDefault();
-    checkWeather(userZip)
+    if (!checkZip(userZip)) {
+        alert('please enter a valid US zip code');
+    } else {
+        checkWeather(userZip)
         .then(data => postWeather(postPath, {
            temperature: data.main.temp,
            date: newDate,
@@ -69,5 +76,6 @@ const handleGenerate = (event) => {
            userFeelings, 
         }))
         .then(res => getData(res));
+    }   
 }
 generate.addEventListener('click', handleGenerate);
