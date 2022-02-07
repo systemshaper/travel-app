@@ -1,7 +1,6 @@
 /* Global Variables */
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&appid=4b6f955094d76823d514ab6bf64a2680&units=imperial';
-const generate = document.querySelector('#generate');
 const postPath = 'http://localhost:3000/add'
 
 // api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
@@ -78,4 +77,6 @@ const handleGenerate = (event) => {
         .then(res => getData(res));
     }   
 }
-generate.addEventListener('click', handleGenerate);
+
+
+export { handleGenerate }

@@ -1,0 +1,22 @@
+{
+  "name": "travel-app",
+  "version": "1.0.0",
+  "description": "capstone project for udacity front end nanodegree",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node src/server/server.js",
+    "dev": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/systemshaper/travel-app.git"
+  },
+  "author": "Daniel Hoover",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/systemshaper/travel-app/issues"
+  },
+  "homepage": "https://github.com/systemshaper/travel-app#readme"
+}
