@@ -1,5 +1,4 @@
 /* Global Variables */
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&appid=4b6f955094d76823d514ab6bf64a2680&units=imperial';
 const postPath = 'http://localhost:3000/add'
 
@@ -12,14 +11,15 @@ let newDate = (d.getMonth() + 1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 //validate zip input
 function checkZip(zip) {
     return /^\d{5}(-\d{4})?$/.test(zip);
- }
+}
 
-// Fetch weather by zip
-const checkWeather = async (zip) => {
-    const endpoint = baseURL + zip + apiKey;
-    const data = await fetch(endpoint).then(res => res.json());
-    console.log(data);
-    return data;
+
+const findCoordinates = async (location) => {
+    const url = `http://api.geonames.org/search?q=${location}&maxRows=10&username=systemshaper&type=json`
+    const coordinates = await fetch(url)
+        .then(res => res.json())
+    console.log('coordinates:', coordinates)
+    return coordinates
 }
 
 // Save data
@@ -46,7 +46,7 @@ const postWeather = async (path, data) => {
 // retrieve latest data
 const getData = async (res) => {
     console.log('running get data with passed response:', res)
-    const data = await fetch('http://localhost:3000/retrieve').then(res => res.json());
+    const data = await fetch('http://localhost:8081/retrieve').then(res => res.json());
     console.log('ran getData, should be data below');
     console.log(data);
     updateUI(data);
@@ -61,21 +61,22 @@ const updateUI = (data) => {
 
 // listen for submit then call apis
 const handleGenerate = (event) => {
-    const userZip = document.querySelector('#zip').value;
-    const userFeelings = document.querySelector('#feelings').value;
+    const userInput = document.querySelector('#zip').value;
+    // const userFeelings = document.querySelector('#feelings').value;
     event.preventDefault();
-    if (!checkZip(userZip)) {
-        alert('please enter a valid US zip code');
-    } else {
-        checkWeather(userZip)
-        .then(data => postWeather(postPath, {
-           temperature: data.main.temp,
-           date: newDate,
-           userZip,
-           userFeelings, 
-        }))
-        .then(res => getData(res));
-    }   
+    findCoordinates(userInput);
+    // if (!checkZip(userZip)) {
+    //     alert('please enter a valid US zip code');
+    // } else {
+    //     checkWeather(userZip)
+    //     .then(data => postWeather(postPath, {
+    //        temperature: data.main.temp,
+    //        date: newDate,
+    //        userZip,
+    //        userFeelings, 
+    //     }))
+    //     .then(res => getData(res));
+    // }   
 }
 
 
