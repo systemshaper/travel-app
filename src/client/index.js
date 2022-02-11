@@ -1,8 +1,8 @@
-import { handleGenerate } from "./js/app"
+import { handleSubmit } from "./js/app"
 import './styles/style.scss'
 
-document.querySelector('#generate').addEventListener('click', handleGenerate);
+document.querySelector('#generate').addEventListener('click', handleSubmit);
 
 export {
-    handleGenerate
+    handleSubmit,
 }

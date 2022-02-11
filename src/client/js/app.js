@@ -1,26 +1,15 @@
-/* Global Variables */
-const apiKey = '&appid=4b6f955094d76823d514ab6bf64a2680&units=imperial';
-const postPath = 'http://localhost:3000/add'
 
-// api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
+import { createCountdown } from './countdown'
+import { findCoordinates } from './findcoordinates';
+
+/* Global Variables */
+const weatherbitKey = '11c9c28e531743798eb27b63fee41a6a';
+
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = (d.getMonth() + 1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-//validate zip input
-function checkZip(zip) {
-    return /^\d{5}(-\d{4})?$/.test(zip);
-}
-
-
-const findCoordinates = async (location) => {
-    const url = `http://api.geonames.org/search?q=${location}&maxRows=10&username=systemshaper&type=json`
-    const coordinates = await fetch(url)
-        .then(res => res.json())
-    console.log('coordinates:', coordinates)
-    return coordinates
-}
 
 // Save data
 const postWeather = async (path, data) => {
@@ -60,11 +49,13 @@ const updateUI = (data) => {
 }
 
 // listen for submit then call apis
-const handleGenerate = (event) => {
-    const userInput = document.querySelector('#zip').value;
-    // const userFeelings = document.querySelector('#feelings').value;
+const handleSubmit = (event) => {
+    const locationInput = document.querySelector('#destination').value;
+    const dateInput = document.querySelector('#startdate').value;
+
     event.preventDefault();
-    findCoordinates(userInput);
+    findCoordinates(locationInput);
+    createCountdown(dateInput);
     // if (!checkZip(userZip)) {
     //     alert('please enter a valid US zip code');
     // } else {
@@ -80,4 +71,4 @@ const handleGenerate = (event) => {
 }
 
 
-export { handleGenerate }
+export { handleSubmit }
