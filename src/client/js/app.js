@@ -1,9 +1,10 @@
 
 import { createCountdown } from './countdown'
-import { findCoordinates } from './findcoordinates';
+import { findCoordinates } from './findcoordinates'
+import { checkWeather } from './checkweather'
 
 /* Global Variables */
-const weatherbitKey = '11c9c28e531743798eb27b63fee41a6a';
+
 
 
 // Create a new date instance dynamically with JS
@@ -53,9 +54,13 @@ const handleSubmit = (event) => {
     const locationInput = document.querySelector('#destination').value;
     const dateInput = document.querySelector('#startdate').value;
 
+    const latitude = "32.78306"
+    const longitude = "-96.80667"
+
     event.preventDefault();
     findCoordinates(locationInput);
     createCountdown(dateInput);
+    checkWeather(latitude, longitude, dateInput)
     // if (!checkZip(userZip)) {
     //     alert('please enter a valid US zip code');
     // } else {
