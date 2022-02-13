@@ -1,12 +1,14 @@
 // const sectionsList = Array.from(document.querySelectorAll('section'));
+import { handleRemove } from "./app";
 
-const createTripCards = (trips) => {
+const renderTripCards = (trips) => {
     const tripListHolder = document.querySelector('.trip_list');
 
+    console.log('list of trips to render as cards:', trips)
     trips.map(trip => {
         const card = document.createElement('div')
         const cardString = 
-            `<div class="tripCard">
+            `<div class="tripCard" id="${trip.tripId}">
                 <img src="${trip.imageUrl}">
                 <div>My trip to: ${trip.location}</div>
                 <div>${trip.countdown}</div>
@@ -17,22 +19,16 @@ const createTripCards = (trips) => {
                         <div>low temp: ${trip.lowTemp}</div>
                     </div>
                 </div>
+                <button type="button" id="removebutton${trip.tripId}">remove trip</button>
             </div>`
         card.innerHTML = cardString
 
-        tripListHolder.append(card)
-        // navItem.classList.add('menu__link');
-        // navItem.setAttribute('navtarget', sectionId);
-        // navItems.push(navItem);
+        tripListHolder.appendChild(card)
+        
+        document.querySelector(`#removebutton${trip.tripId}`).addEventListener('click', handleRemove(trip))
     }) 
 }
 
 // document.addEventListener('DOMContentLoaded', createNavItems(sectionsList));
 
-
-
-const removeTripCard = () => {
-
-}
-
-export { createTripCards, removeTripCard }
+export { renderTripCards }

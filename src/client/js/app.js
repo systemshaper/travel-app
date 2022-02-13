@@ -3,79 +3,73 @@ import { createCountdown } from './countdown'
 import { findCoordinates } from './findcoordinates'
 import { checkWeather } from './checkweather'
 import { fetchImage } from './fetchImage'
-import { createTripCards } from './tripCards'
-
-/* Global Variables */
-
+import { renderTripCards } from './tripCards'
+import { v4 as uuid } from 'uuid'
 
 
-// Create a new date instance dynamically with JS
-let d = new Date()
-let newDate = (d.getMonth() + 1)+'.'+ d.getDate()+'.'+ d.getFullYear()
+const createTrip = async (locationInput, dateInput) => {
+    const { latitude, longitude } = await findCoordinates(locationInput)
+    const imageUrl = await fetchImage(locationInput)
+    const { weather, highTemp, lowTemp } = await checkWeather(latitude, longitude, dateInput)
+    const newTrip = {
+        tripId: uuid(),
+        location: locationInput,
+        date: dateInput,
+        latitude,
+        longitude,
+        imageUrl,
+        weather,
+        highTemp,
+        lowTemp,
+        countdown: createCountdown(dateInput)
+    }
 
+    console.log('created a new trip with data:', newTrip)
+    return newTrip
+}
 
-// Save data
-const postWeather = async (path, data) => {
-    const response = await fetch(path, {
+const saveTrip = async (tripData) => {
+    const response = await fetch('http://localhost:8081/addtrip', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
-    });
-    try {
-        const updatedData = await response.json()
-        console.log('ran postWeather, response below:')
-        console.log(updatedData)
-        return updatedData
-    }catch(error) {
-        console.log('error', error)
-    }
-
+        body: JSON.stringify(tripData)
+    })
+    const updatedTrips = await response.json()
+    console.log('trips after this save:', updatedTrips)
+    return updatedTrips
 }
 
-// retrieve latest data
-const getData = async (res) => {
-    console.log('running get data with passed response:', res)
-    const data = await fetch('http://localhost:8081/retrieve').then(res => res.json())
-    console.log('ran getData, should be data below')
-    console.log(data)
-    updateUI(data)
+const removeTrip = async (trip) => {
+    const response = await fetch('http://localhost:8081/removetrip', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(trip)
+    })
+    const updatedTrips = await response.json()
+    return updatedTrips
 }
 
-// update with latest data
-const updateUI = (data) => {
-    document.querySelector('#date').textContent = data.date
-    document.querySelector('#temp').textContent = data.temperature
-    document.querySelector('#content').textContent = data.userFeelings
-}
 
 // listen for submit then call apis
 const handleSubmit = (event) => {
+    event.preventDefault()
+
     const locationInput = document.querySelector('#destination').value
     const dateInput = document.querySelector('#startdate').value
 
-    const trips = []
-    const exampleTrip = {
-        location: 'Dallas',
-        date: '02/19/2022',
-        latitude: "32.78306",
-        longitude: "-96.80667",
-        imageUrl: 'https://pixabay.com/get/g25d79ad6bac7c406dce33c871ca3dc61e707d58de0803e7fd19e0a63780d3aaf391e3021a90d8c661113e3ccda3d17324a31ce117b9c25d46659883f5a53229f_640.jpg',
-        weather: 'Scattered clouds',
-        highTemp: 8.1,
-        lowTemp: 5.3,
-        countdown: 'Your trip begins in just 7 days!'
-    }
-    trips.push(exampleTrip)
-
-    event.preventDefault()
-    findCoordinates(locationInput)
-    createCountdown(dateInput)
-    checkWeather(exampleTrip.latitude, exampleTrip.longitude, dateInput)
-    fetchImage(locationInput)
-    createTripCards(trips)
+    createTrip(locationInput, dateInput)
+        .then(trip => saveTrip(trip))
+        .then(trips => renderTripCards(trips))
+    
+    
+    
+    
     // if (!checkZip(userZip)) {
     //     alert('please enter a valid US zip code');
     // } else {
@@ -90,5 +84,9 @@ const handleSubmit = (event) => {
     // }   
 }
 
+const handleRemove = (trip) => {
+    removeTrip(trip).then(trips => renderTripCards(trips))
+}
 
-export { handleSubmit }
+
+export { handleSubmit, handleRemove }

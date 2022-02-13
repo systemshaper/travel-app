@@ -1,5 +1,5 @@
-// Setup empty JS object to act as endpoint for all routes
-let projectData = {};
+//endpoint for trip info
+const trips = [];
 
 // Require Express to run server and routes
 const express = require('express');
@@ -29,22 +29,37 @@ app.use(express.static('dist'));
 app.listen(port, () => console.log('my server is running on port ' + port));
 
 // Setup Routes
-const returnData = (request, response) => {
-    response.send(projectData);
-    console.log('get was called')
+const retrieveTrips = (request, response) => {
+    response.send(trips);
+    console.log('retrieveTrips was called')
 }
-app.get('/retrieve', returnData)
+app.get('/retrievetrips', retrieveTrips)
 
-
-const addData = (request, response) => {
-    projectData = {
-        temperature: request.body.temperature,
+const addTrip = (request, response) => {
+    const trip = {
+        tripId: request.body.tripId,
+        location: request.body.location,
         date: request.body.date,
-        userZip: request.body.userZip,
-        userFeelings: request.body.userFeelings,
+        latitude: request.body.latitude,
+        longitude: request.body.longitude,
+        imageUrl: request.body.imageUrl,
+        weather: request.body.weather,
+        highTemp: request.body.highTemp,
+        lowTemp: request.body.lowTemp,
+        countdown: request.body.countdown
     };
-    console.log('post was called, request.body is:');
-    console.log(request.body);
-    response.send(projectData);
+    trips.push(trip)
+    response.send(trips)
 }
-app.post('/add', addData)
+app.post('/addtrip', addTrip)
+
+const removeTrip = (request, response) => {
+    console.log('removeTrip was called')
+    const tripIndex = trips.findIndex(trip => trip.tripId === request.body.tripId)
+    console.log('index of trip to remove:', tripIndex)
+    console.log('trips before removal', trips)
+    trips.splice(tripIndex)
+    console.log('trips after splice removal', trips)
+    response.send(trips)
+}
+app.post('/removetrip', removeTrip)
