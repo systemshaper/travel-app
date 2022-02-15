@@ -4,7 +4,12 @@ import { handleRemove } from "./app";
 const renderTripCards = (trips) => {
     const tripListHolder = document.querySelector('.trip_list');
 
-    console.log('list of trips to render as cards:', trips)
+    // clear all the current cards before rendering new list
+    while (tripListHolder.firstChild) {
+        tripListHolder.removeChild(tripListHolder.firstChild)
+    }
+
+    // create card elements for each trip item in the array
     trips.map(trip => {
         const card = document.createElement('div')
         const cardString = 
@@ -25,10 +30,8 @@ const renderTripCards = (trips) => {
 
         tripListHolder.appendChild(card)
         
-        document.querySelector(`#removebutton${trip.tripId}`).addEventListener('click', handleRemove(trip))
+        document.querySelector(`#removebutton${trip.tripId}`).addEventListener('click', () => {handleRemove(trip)})
     }) 
 }
-
-// document.addEventListener('DOMContentLoaded', createNavItems(sectionsList));
 
 export { renderTripCards }
