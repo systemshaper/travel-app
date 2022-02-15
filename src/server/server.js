@@ -21,6 +21,10 @@ const corsOptions ={
  }
 app.use(cors(corsOptions));
 
+// dotenv to load environment variables
+const dotenv = require('dotenv')
+dotenv.config()
+
 // Initialize the main project folder
 app.use(express.static('dist'));
 
@@ -28,7 +32,16 @@ app.use(express.static('dist'));
 // Setup Server
 app.listen(port, () => console.log('my server is running on port ' + port));
 
+
 // Setup Routes
+const sendKeys = (request, response) => {
+    response.send({
+        weatherbitKey: process.env.WEATHERBIT_KEY,
+        pixabayKey: process.env.PIXABAY_KEY
+    })
+}
+app.get('/keys', sendKeys)
+
 const retrieveTrips = (request, response) => {
     response.send(trips);
     console.log('retrieveTrips was called')

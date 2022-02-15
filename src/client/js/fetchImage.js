@@ -1,7 +1,8 @@
-const pixabayKey = '25676820-bcd461f51d45cd7adb043ce89'
+import { fetchKeys } from "./fetchKeys"
 
 const fetchImage = async (searchInput) => {
-    const url = `https://pixabay.com/api/?key=${pixabayKey}&q=${searchInput}&image_type=photo&category=travel`
+    const apiKey = await fetchKeys().then(keys => keys.pixabayKey)
+    const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchInput}&image_type=photo&category=travel`
     const imageResults = await fetch(url)
         .then(res => res.json())
     const imageUrl = await imageResults.hits[0].webformatURL
