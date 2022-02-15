@@ -8,21 +8,17 @@
 </head>
  <body>
 <div id = "app">
-  <div class ="holder headline">
-    Travel Planner
+  <div class ="headline">
+    <h1>Travel Planner</h1>
   </div>
-  <div class ="holder destination">
+  <div class ="holder trip_input">
     <label for="destination">Enter your Destination</label>
     <input type="text" id="destination" placeholder="zip code, city, etc">
-  </div>
-  <div class ="holder date">
-    <label for="date">Select the date of your trip</label>
-    <input type="date" id="startdate">
-  </div>
-  <div class ="holder submit">
+    <label for="date" class="datepicker">Select the date of your trip</label>
+    <input type="date" id="startdate" placeholder="mm/dd/yyyy">
     <button id="generate" type = "submit"> Save Trip </button>
   </div>
-  <div class="holder trip_list">
+  <div class="trip_list">
     
   </div>
 </div>

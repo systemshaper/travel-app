@@ -1,5 +1,5 @@
 body{
-    background: #fffff8;
+    background: #d3aeb5;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -8,8 +8,7 @@ body{
     grid-auto-rows: minmax(150px, auto);
     /* grid-template-columns:  */
     height:100vh;
-    background: #f23557;
-    color: #f0d43a;
+    color: white;
     justify-content: center;
     grid-gap: 1em;
     font-size: 20px;
@@ -17,35 +16,13 @@ body{
 }
 
 .holder{
-
+    border: 1px solid white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.trip_list{
-    background: rgba(59, 74, 107, .4);
-}
-
-#entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
-}
-
-.headline {
-
-}
-.title{
-
-}
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
@@ -57,22 +34,33 @@ input{
     display:block;
     height: 60px;
     width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
+    color: gray;
+    background:#9dc090;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
+::-webkit-calendar-picker-indicator {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="gray" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
+
+
 button{
-    width: 400px;
+    width: 350px;
     height: 100px;
+    color: white;
     background: #3b4a6b;
-    color: #f0d43a;
     font-size: 26px;
     font-family: 'Oswald', sans-serif;
     border: none;
-    box-shadow: 2px 4px 5px #444;
+    border-radius: 20px;
+    box-shadow: 3px 5px 6px #444;
+    margin-top: 15px;
 }
 h1{
     font-size: 36px;
@@ -80,10 +68,10 @@ h1{
 
 textarea{
     background:#22b2da;
-    color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -91,21 +79,3 @@ textarea:focus,
 button:focus {
     outline: none;
 }
-/* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 

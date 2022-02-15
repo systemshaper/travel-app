@@ -13,7 +13,7 @@ const renderTripCards = (trips) => {
     trips.map(trip => {
         const card = document.createElement('div')
         const cardString = 
-            `<div class="tripCard" id="${trip.tripId}">
+            `<div class="holder tripCard" id="${trip.tripId}">
                 <img src="${trip.imageUrl}">
                 <div>My trip to: ${trip.location}</div>
                 <div>${trip.countdown}</div>
