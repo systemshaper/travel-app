@@ -13,18 +13,20 @@ const renderTripCards = (trips) => {
     trips.map(trip => {
         const card = document.createElement('div')
         const cardString = 
-            `<div class="holder tripCard" id="${trip.tripId}">
-                <img src="${trip.imageUrl}">
-                <div>My trip to: ${trip.location}</div>
-                <div>${trip.countdown}</div>
-                <div class="weather">
-                    <div>weather summary: ${trip.weather}</div>
-                    <div class="temperature">
-                        <div>high temp: ${trip.highTemp}</div>
-                        <div>low temp: ${trip.lowTemp}</div>
+            `<div class="holder tripCard" id="${trip.tripId}">    
+                <img src="${trip.imageUrl}" class="location-image">
+                <div class="trip-info">
+                    <div>My trip to: ${trip.location}</div>
+                    <div>${trip.countdown}</div>
+                    <div class="weather">
+                        <div>weather summary: ${trip.weather}</div>
+                        <div class="temperature">
+                            <div>high temp: ${trip.highTemp}</div>
+                            <div>low temp: ${trip.lowTemp}</div>
+                        </div>
                     </div>
+                    <button type="button" class="remove-button" id="removebutton${trip.tripId}">remove trip</button>
                 </div>
-                <button type="button" id="removebutton${trip.tripId}">remove trip</button>
             </div>`
         card.innerHTML = cardString
 
