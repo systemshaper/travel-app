@@ -1,10 +1,10 @@
 # Weather-Journal App Project
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+This project primarily demonstrates my ability to manage asynchronous api calls
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+## Getting Started
+Enter the name of a location, and the date that you will leave to visit that location. The app will call a selection of apis to return information relevant to that trip, including an image (if found) and weather data, as well as a handy countdown to remind you how many days you have to prepare for your trip. You can add multiple trips, or remove a trip, and see the full list sorted by date.
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+## Dependencies
+In addition to the "standard" dependencies included in all recent Udacity FEND projects, I've added the "uuid" plugin in order to generate unique identifiers for my dynamically created html.

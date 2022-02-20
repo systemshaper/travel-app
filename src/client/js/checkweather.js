@@ -2,7 +2,6 @@ import { daysFromCurrentDate } from "./daysfromcurrent"
 import { fetchKeys } from "./fetchKeys"
 
 
-
 const checkWeather = async (lat, long, date) => {
     const daysAhead = daysFromCurrentDate(date)
     

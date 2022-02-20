@@ -6,7 +6,7 @@ import { fetchImage } from './fetchImage'
 import { renderTripCards } from './tripCards'
 import { v4 as uuid } from 'uuid'
 
-
+// main functions
 const createTrip = async (locationInput, dateInput) => {
     const { latitude, longitude } = await findCoordinates(locationInput)
     const imageUrl = await fetchImage(locationInput)
@@ -56,7 +56,7 @@ const removeTrip = async (trip) => {
 }
 
 
-// listen for submit then call apis
+// event handlers
 const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -65,23 +65,7 @@ const handleSubmit = (event) => {
 
     createTrip(locationInput, dateInput)
         .then(trip => saveTrip(trip))
-        .then(trips => renderTripCards(trips))
-    
-    
-    
-    
-    // if (!checkZip(userZip)) {
-    //     alert('please enter a valid US zip code');
-    // } else {
-    //     checkWeather(userZip)
-    //     .then(data => postWeather(postPath, {
-    //        temperature: data.main.temp,
-    //        date: newDate,
-    //        userZip,
-    //        userFeelings, 
-    //     }))
-    //     .then(res => getData(res));
-    // }   
+        .then(trips => renderTripCards(trips)) 
 }
 
 const handleRemove = (trip) => {

@@ -1,4 +1,3 @@
-// const sectionsList = Array.from(document.querySelectorAll('section'));
 import { handleRemove } from "./app";
 
 const renderTripCards = (trips) => {
