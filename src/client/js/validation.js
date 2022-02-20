@@ -7,7 +7,7 @@ const restrictDateRange = () => {
     dateInput.setAttribute('min', today)
 
 
-    date.setDate(date.getDate() + 16)
+    date.setDate(date.getDate() + 15)
     const maxDate = date.toISOString().split('T')[0]
     dateInput.setAttribute('max', maxDate)
 }

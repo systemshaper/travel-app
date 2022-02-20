@@ -15,6 +15,11 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
+.headline {
+    display: flex;
+    justify-content: center;
+}
+
 .holder{
     border: 1px solid white;
     padding: 20px;
@@ -62,20 +67,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: auto;
 }
 
-.trip-card {
-    display: flex;
-}
-
-.location-image {
-    width: 90vw;
-}
-
-.remove-button {
-    width: 200px;
-    height: 75px;
-    background: gray;
-}
-
 button{
     width: 350px;
     height: 100px;
@@ -87,9 +78,15 @@ button{
     border-radius: 20px;
     box-shadow: 3px 5px 6px #444;
     margin-top: 15px;
+    cursor: pointer;
 }
+
 h1{
     font-size: 36px;
+}
+
+h2{
+    font-size: 28px;
 }
 
 textarea{

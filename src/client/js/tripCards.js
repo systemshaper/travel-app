@@ -16,7 +16,7 @@ const renderTripCards = (trips) => {
             `<div class="holder tripCard" id="${trip.tripId}">    
                 <img src="${trip.imageUrl}" class="location-image">
                 <div class="trip-info">
-                    <div>My trip to: ${trip.location}</div>
+                    <h2>My trip to: ${trip.location}</h2>
                     <div>${trip.countdown}</div>
                     <div class="weather">
                         <div>weather summary: ${trip.weather}</div>

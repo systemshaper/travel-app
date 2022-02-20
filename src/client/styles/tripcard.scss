@@ -1,0 +1,26 @@
+.tripCard {
+    display: flex;
+}
+
+.location-image {
+    width: 90vw;
+}
+
+.remove-button {
+    width: 200px;
+    height: 75px;
+    background: none;
+    border: 2px solid white;
+    box-shadow: none;
+}
+
+@media screen and (min-width: 900px) {
+    .tripCard {
+        flex-direction: row;
+    }
+
+    .location-image {
+        width: 40vw;
+        margin-right: 20px;
+    }
+}
