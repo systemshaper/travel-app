@@ -3,7 +3,7 @@ import { restrictDateRange } from "./js/validation";
 import './styles/style.scss'
 import './styles/tripcard.scss'
 
-document.querySelector('#generate').addEventListener('click', handleSubmit)
+document.querySelector('#trip_input').addEventListener('submit', handleSubmit)
 document.addEventListener('DOMContentLoaded', restrictDateRange)
 
 export {
