@@ -68,12 +68,8 @@ const addTrip = (request, response) => {
 app.post('/addtrip', addTrip)
 
 const removeTrip = (request, response) => {
-    console.log('removeTrip was called for', request.body.tripId)
     const tripIndex = trips.findIndex(trip => trip.tripId === request.body.tripId)
-    console.log('index of trip to remove:', tripIndex)
-    console.log('trips before removal', trips)
     trips.splice(tripIndex, 1)
-    console.log('trips after splice removal', trips)
     response.send(trips)
 }
 app.post('/removetrip', removeTrip)
