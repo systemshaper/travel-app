@@ -59,6 +59,7 @@ const addTrip = (request, response) => {
         weather: request.body.weather,
         highTemp: request.body.highTemp,
         lowTemp: request.body.lowTemp,
+        countdownMessage: request.body.countdownMessage,
         countdown: request.body.countdown
     };
     trips.push(trip)

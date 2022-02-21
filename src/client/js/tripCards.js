@@ -3,20 +3,24 @@ import { handleRemove } from "./app";
 const renderTripCards = (trips) => {
     const tripListHolder = document.querySelector('.trip_list');
 
+    const sortedTrips = trips.sort((a, b) => {
+        return a.countdown - b.countdown
+    })
+
     // clear all the current cards before rendering new list
     while (tripListHolder.firstChild) {
         tripListHolder.removeChild(tripListHolder.firstChild)
     }
 
     // create card elements for each trip item in the array
-    trips.map(trip => {
+    sortedTrips.map(trip => {
         const card = document.createElement('div')
         const cardString = 
             `<div class="holder tripCard" id="${trip.tripId}">    
                 <img src="${trip.imageUrl}" class="location-image">
                 <div class="trip-info">
                     <h2>My trip to: ${trip.location}</h2>
-                    <div>${trip.countdown}</div>
+                    <div>${trip.countdownMessage}</div>
                     <div class="weather">
                         <div>weather summary: ${trip.weather}</div>
                         <div class="temperature">

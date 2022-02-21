@@ -1,5 +1,6 @@
 
 import { createCountdown } from './countdown'
+import { daysFromCurrentDate } from './daysfromcurrent'
 import { findCoordinates } from './findcoordinates'
 import { checkWeather } from './checkweather'
 import { fetchImage } from './fetchImage'
@@ -21,7 +22,8 @@ const createTrip = async (locationInput, dateInput) => {
         weather,
         highTemp,
         lowTemp,
-        countdown: createCountdown(dateInput)
+        countdownMessage: createCountdown(dateInput),
+        countdown: daysFromCurrentDate(dateInput)
     }
 
     console.log('created a new trip with data:', newTrip)
