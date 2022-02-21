@@ -32,6 +32,9 @@ const renderTripCards = (trips) => {
                 </div>
             </div>`
         card.innerHTML = cardString
+        if (trip.countdown < 0) {
+            card.classList.add('expired_trip')
+        }
 
         tripListHolder.appendChild(card)
         
