@@ -6,7 +6,6 @@ body{
 #app{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
-    height:100vh;
     color: white;
     justify-content: center;
     grid-gap: 1em;
@@ -21,11 +20,15 @@ body{
 
 .holder{
     border: 1px solid white;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-bottom: 20px;
+
+    &.trip_input {
+        min-height: 400px;
+        padding: 20px;
+    }
 }
 
 label{
@@ -45,6 +48,7 @@ input{
     border-radius: 25px;
     padding-left: 10px;
     padding-right: 10px;
+    margin-bottom: 8px;
 }
 
 input[type="date"] {
@@ -56,7 +60,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     bottom: 0;
     color: transparent;
     cursor: pointer;
-    height: auto;
+    height: 60px;
     left: 0;
     position: absolute;
     right: 0;

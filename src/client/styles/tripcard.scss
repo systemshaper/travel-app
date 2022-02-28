@@ -3,7 +3,7 @@
 }
 
 .location-image {
-    width: 90vw;
+    width: 100%;
 }
 
 .remove-button {
@@ -18,13 +18,24 @@
     background-color: gray;
 }
 
-@media screen and (min-width: 900px) {
+.trip-info {
+    margin: 20px;
+}
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+    .location-image {
+        width: 90vw;
+        margin: 20px;
+    }
+}
+
+@media screen and (min-width: 800px) {
     .tripCard {
         flex-direction: row;
     }
 
     .location-image {
         width: 40vw;
-        margin-right: 20px;
+        margin: 20px;
     }
 }
